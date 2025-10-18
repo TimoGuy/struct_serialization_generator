@@ -3,7 +3,7 @@
 #include "../../simple_serializable_struct.h"
 
 
-
+// Basic concrete types.
 template<>
 void HAWSOO::hserial::dump(uint8_t const& data, Generic_data_node& gdn)
 {
@@ -149,6 +149,7 @@ void HAWSOO::hserial::load(std::string& data, Generic_data_node const& gdn)
 }
 
 
+// Custom struct types.
 template<>
 void HAWSOO::hserial::dump(My_simple_pub_struct const& data, Generic_data_node& gdn)
 {

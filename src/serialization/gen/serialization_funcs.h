@@ -20,7 +20,7 @@ namespace HAWSOO
 namespace hserial
 {
 
-// Generic funcs.
+// Generic type.
 template<class T>
 void dump(T const& data, Generic_data_node& gdn)
 {
@@ -37,6 +37,7 @@ void load(T& data, Generic_data_node const& gdn)
     assert(false);
 }
 
+// Generic std::vector.
 template<class T>
 void dump(std::vector<T> const& data, Generic_data_node& gdn)
 {
@@ -61,6 +62,7 @@ void load(std::vector<T>& data, Generic_data_node const& gdn)
     }
 }
 
+// Generic std::array.
 template<class T, size_t N>
 void dump(std::array<T, N> const& data, Generic_data_node& gdn)
 {
@@ -84,7 +86,7 @@ void load(std::array<T, N>& data, Generic_data_node const& gdn)
     }
 }
 
-// Custom funcs.
+// Basic concrete types.
 template<> void dump(uint8_t const& data, Generic_data_node& gdn);
 template<> void load(uint8_t& data, Generic_data_node const& gdn);
 template<> void dump(int8_t const& data, Generic_data_node& gdn);
@@ -108,6 +110,7 @@ template<> void load(double_t& data, Generic_data_node const& gdn);
 template<> void dump(std::string const& data, Generic_data_node& gdn);
 template<> void load(std::string& data, Generic_data_node const& gdn);
 
+// Custom struct types.
 template<> void dump(My_simple_pub_struct const& data, Generic_data_node& gdn);
 template<> void load(My_simple_pub_struct& data, Generic_data_node const& gdn);
 template<> void dump(Ok_ok_ima_stop_playin const& data, Generic_data_node& gdn);
