@@ -2,6 +2,18 @@
 
 #include "../generic_data_type.h"
 
+#include <array>
+#include <string>
+#include <vector>
+
+
+// Forward declarations.
+namespace HAWSOO
+{
+struct My_simple_pub_struct;
+struct Ok_ok_ima_stop_playin;
+}
+////////////////////////
 
 namespace HAWSOO
 {
@@ -25,7 +37,67 @@ void load(Generic_data_node const& gdn, T& data)
     assert(false);
 }
 
+template<class T>
+void dump(std::vector<T> const& data, Generic_data_node& gdn)
+{
+    gdn.node_data.set_type(Generic_data::NODE_OBJECT);
 
+    gdn.children.reserve(data.size());
+    for (size_t i = 0; i < data.size(); i++)
+    {
+        dump(data[i], gdn.children.emplace(std::to_string(i)).first->second);
+    }
+}
+
+template<class T>
+void load(Generic_data_node const& gdn, std::vector<T>& data)
+{
+    assert(gdn.node_data.get_type() == Generic_data::NODE_OBJECT);
+
+    data.resize(gdn.children.size());
+    for (size_t i = 0; i < gdn.children.size(); i++)
+    {
+        load(gdn.children.at(std::to_string(i)), data[i]);
+    }
+}
+
+template<class T, size_t N>
+void dump(std::array<T, N> const& data, Generic_data_node& gdn)
+{
+    gdn.node_data.set_type(Generic_data::NODE_OBJECT);
+
+    gdn.children.reserve(data.size());
+    for (size_t i = 0; i < data.size(); i++)
+    {
+        dump(data[i], gdn.children.emplace(std::to_string(i)).first->second);
+    }
+}
+
+template<class T, size_t N>
+void load(Generic_data_node const& gdn, std::array<T, N>& data)
+{
+    assert(gdn.node_data.get_type() == Generic_data::NODE_OBJECT);
+
+    for (size_t i = 0; i < gdn.children.size(); i++)
+    {
+        load(gdn.children.at(std::to_string(i)), data[i]);
+    }
+}
+
+// Custom funcs.
+template<> void dump(uint8_t const& data, Generic_data_node& gdn);
+template<> void dump(int8_t const& data, Generic_data_node& gdn);
+template<> void dump(uint16_t const& data, Generic_data_node& gdn);
+template<> void dump(int16_t const& data, Generic_data_node& gdn);
+template<> void dump(uint32_t const& data, Generic_data_node& gdn);
+template<> void dump(int32_t const& data, Generic_data_node& gdn);
+template<> void dump(uint64_t const& data, Generic_data_node& gdn);
+template<> void dump(int64_t const& data, Generic_data_node& gdn);
+template<> void dump(float_t const& data, Generic_data_node& gdn);
+template<> void dump(double_t const& data, Generic_data_node& gdn);
+template<> void dump(std::string const& data, Generic_data_node& gdn);
+template<> void dump(My_simple_pub_struct const& data, Generic_data_node& gdn);
+template<> void dump(Ok_ok_ima_stop_playin const& data, Generic_data_node& gdn);
 
 
 }  // namespace hserial

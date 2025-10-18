@@ -1,13 +1,15 @@
 #pragma once
 
+#include <array>
 #include <cstdint>
 #include <string>
+#include <vector>
 
 
 namespace HAWSOO
 {
 
-/// @HAWSOO_SERIALIZE[public].
+/// @HAWSOO_SERIALIZE.
 struct My_simple_pub_struct
 {
     char my_char;
@@ -18,7 +20,7 @@ private:
     std::string i_have_a_private_str;
 };
 
-/// @HAWSOO_SERIALIZE[public].
+/// @HAWSOO_SERIALIZE.
 class My_simple_pub_class
 {
     char my_char;
@@ -37,6 +39,13 @@ class My_simple_priv_class
     int32_t num3;
     double_t num5;
     double_t num4;
+};
+
+/// @HAWSOO_SERIALIZE.
+struct Ok_ok_ima_stop_playin
+{
+    std::vector<uint32_t> list_of_indexes;
+    std::array<std::string, 3> three_strs;
 };
 
 }  // namespace HAWSOO

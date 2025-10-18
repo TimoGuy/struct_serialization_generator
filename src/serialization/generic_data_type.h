@@ -16,6 +16,7 @@ public:
     enum Data_type
     {
         UNDEFINED,
+        NODE_OBJECT,
         UNSIGNED_INTEGER,
         SIGNED_INTEGER,
         DOUBLE_FLOAT,
@@ -50,9 +51,25 @@ public:
         }
     }
 
+    void set_type(Data_type data_type)
+    {   // Only set the type once. After that, the type is not allowed another change.
+        assert(m_type == UNDEFINED);
+        m_type = data_type;
+
+        if (m_type == STRING)
+        {
+            m_data.data_str = nullptr;
+        }
+    }
+
+    Data_type get_type() const
+    {
+        return m_type;
+    }
+
     // Read data funcs.
     template<typename T>
-    T read_data()
+    T read_data() const
     {
         std::cerr << "ERROR: Type \"" << typeid(T).name()
                   << "\" does not have a `read_data()` func defined" << std::endl;
@@ -61,28 +78,28 @@ public:
     }
 
     template<>
-    uint64_t read_data()
+    uint64_t read_data() const
     {
         assert(m_type == UNSIGNED_INTEGER);
         return m_data.data_u64;
     }
 
     template<>
-    int64_t read_data()
+    int64_t read_data() const
     {
         assert(m_type == SIGNED_INTEGER);
         return m_data.data_i64;
     }
 
     template<>
-    double_t read_data()
+    double_t read_data() const
     {
         assert(m_type == DOUBLE_FLOAT);
         return m_data.data_dbl_flt;
     }
 
     template<>
-    std::string read_data()
+    std::string read_data() const
     {
         assert(m_type == STRING);
         return *m_data.data_str;
