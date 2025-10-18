@@ -48,4 +48,17 @@ struct Ok_ok_ima_stop_playin
     std::array<std::string, 3> three_strs;
 };
 
+/// @HAWSOO_SERIALIZE.
+struct I_has_a_nested_struct
+{
+    int32_t jojo;
+    float_t koko;
+
+    struct Heres_the_nested_struct
+    {
+        std::string nest_str;
+        size_t some_irregular_thingy;
+    } nested_val;
+};
+
 }  // namespace HAWSOO
