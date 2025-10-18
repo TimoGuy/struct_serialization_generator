@@ -38,10 +38,10 @@ public:
         }
     }
 
-    Generic_data(const Generic_data&)            = delete;
-    Generic_data& operator=(const Generic_data&) = delete;
-    Generic_data(Generic_data&&)                 = delete;
-    Generic_data& operator=(Generic_data&&)      = delete;
+    Generic_data(const Generic_data&)            = default;
+    Generic_data& operator=(const Generic_data&) = default;
+    Generic_data(Generic_data&&)                 = default;
+    Generic_data& operator=(Generic_data&&)      = default;
 
     ~Generic_data()
     {

@@ -3,8 +3,11 @@
 #include "../generic_data_type.h"
 
 #include <array>
+#include <iostream>
 #include <string>
+#include <typeinfo>
 #include <vector>
+
 
 
 // Forward declarations.
@@ -46,7 +49,7 @@ void dump(std::vector<T> const& data, Generic_data_node& gdn)
     gdn.children.reserve(data.size());
     for (size_t i = 0; i < data.size(); i++)
     {
-        dump(data[i], gdn.children.emplace(std::to_string(i)).first->second);
+        dump(data[i], gdn.children.emplace(std::to_string(i), Generic_data_node{}).first->second);
     }
 }
 
@@ -71,7 +74,7 @@ void dump(std::array<T, N> const& data, Generic_data_node& gdn)
     gdn.children.reserve(data.size());
     for (size_t i = 0; i < data.size(); i++)
     {
-        dump(data[i], gdn.children.emplace(std::to_string(i)).first->second);
+        dump(data[i], gdn.children.emplace(std::to_string(i), Generic_data_node{}).first->second);
     }
 }
 

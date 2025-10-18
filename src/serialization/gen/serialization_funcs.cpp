@@ -156,9 +156,9 @@ void HAWSOO::hserial::dump(My_simple_pub_struct const& data, Generic_data_node& 
     gdn.node_data.set_type(Generic_data::NODE_OBJECT);
 
     gdn.children.reserve(3);
-    dump(data.my_char, gdn.children.emplace("my_char").first->second);
-    dump(data.some_thingy, gdn.children.emplace("some_thingy").first->second);
-    dump(data.my_theory, gdn.children.emplace("my_theory").first->second);
+    dump(data.my_char, gdn.children.emplace("my_char", Generic_data_node{}).first->second);
+    dump(data.some_thingy, gdn.children.emplace("some_thingy", Generic_data_node{}).first->second);
+    dump(data.my_theory, gdn.children.emplace("my_theory", Generic_data_node{}).first->second);
 }
 
 template<>
@@ -177,8 +177,8 @@ void HAWSOO::hserial::dump(Ok_ok_ima_stop_playin const& data, Generic_data_node&
     gdn.node_data.set_type(Generic_data::NODE_OBJECT);
 
     gdn.children.reserve(2);
-    dump(data.list_of_indexes, gdn.children.emplace("list_of_indexes").first->second);
-    dump(data.three_strs, gdn.children.emplace("three_strs").first->second);
+    dump(data.list_of_indexes, gdn.children.emplace("list_of_indexes", Generic_data_node{}).first->second);
+    dump(data.three_strs, gdn.children.emplace("three_strs", Generic_data_node{}).first->second);
 }
 
 template<>

@@ -24,4 +24,8 @@ endif()
 # Executable.
 add_executable(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/serialization/gen/serialization_funcs.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/serialization/gen/serialization_funcs.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/serialization/generic_data_type.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/simple_serializable_struct.h
 )
