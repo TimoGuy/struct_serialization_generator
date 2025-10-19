@@ -3,7 +3,6 @@
 #include "simple_serializable_struct.h"
 
 #include <cstdint>
-#include <iostream>
 
 
 int32_t main()
